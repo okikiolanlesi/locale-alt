@@ -23,6 +23,20 @@ class RegionController extends BaseController {
       }
     }
   );
+
+  getOne = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {
+      const { err, data } = await this.region.show(req.params.id);
+
+      if (err) {
+        return next(err);
+      }
+
+      if (data) {
+        return this.successResponse(res, data);
+      }
+    }
+  );
 }
 
 export default new RegionController();

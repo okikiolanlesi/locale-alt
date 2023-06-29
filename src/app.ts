@@ -6,16 +6,19 @@ import globalErrorHandler, {
   handle404Error,
 } from "./controllers/error.controller";
 import config from "./config/env.config";
+import CacheService from "./services/cache.service";
 
 class Server {
   public app: express.Application;
   public port: number;
   private logger: any;
+  private redis: CacheService;
 
   constructor() {
     this.app = express();
     this.port = config.port;
     this.logger = morgan("dev");
+    this.redis = new CacheService();
     this.config();
   }
 
@@ -32,6 +35,9 @@ class Server {
   public start() {
     this.app.listen(this.port, () => {
       console.log(`Server is listening on port ${this.port}`);
+      this.redis.connect().then(() => {
+        console.log("Redis connected");
+      });
     });
   }
 }

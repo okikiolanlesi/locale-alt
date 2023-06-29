@@ -23,6 +23,20 @@ class LocalGovernmentAreaController extends BaseController {
       }
     }
   );
+
+  getOne = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {
+      const { err, data } = await this.lga.show(req.params.id);
+
+      if (err) {
+        return next(err);
+      }
+
+      if (data) {
+        return this.successResponse(res, data);
+      }
+    }
+  );
 }
 
 export default new LocalGovernmentAreaController();
