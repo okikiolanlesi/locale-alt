@@ -5,13 +5,7 @@ import State from "../models/state.model";
 class StateAction {
   index = async (params: any): Promise<IResponse> => {
     try {
-      const features = new ApiFeatures(
-        State.find().populate({
-          path: "LocalGovernmentAreas",
-          select: "name slug",
-        }),
-        params
-      )
+      const features = new ApiFeatures(State.find(), params)
         .filter()
         .limitFields()
         .sort();

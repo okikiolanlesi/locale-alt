@@ -12,7 +12,7 @@ class LocalGovernmentAreaController extends BaseController {
 
   getAll = catchAsync(
     async (req: Request, res: Response, next: NextFunction) => {
-      const { err, data } = await this.lga.index(req.params);
+      const { err, data } = await this.lga.index(req.query);
 
       if (err) {
         return next(err);

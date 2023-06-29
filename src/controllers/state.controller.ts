@@ -12,7 +12,7 @@ class StateController extends BaseController {
 
   getAll = catchAsync(
     async (req: Request, res: Response, next: NextFunction) => {
-      const { err, data } = await this.state.index(req.params);
+      const { err, data } = await this.state.index(req.query);
 
       if (err) {
         return next(err);

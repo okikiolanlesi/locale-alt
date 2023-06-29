@@ -5,13 +5,7 @@ import ApiFeatures from "../services/features.service";
 class RegionAction {
   index = async (params: any): Promise<IResponse> => {
     try {
-      const features = new ApiFeatures(
-        Region.find().populate({
-          path: "states",
-          select: "name slug",
-        }),
-        params
-      )
+      const features = new ApiFeatures(Region.find(), params)
         .filter()
         .limitFields()
         .sort();

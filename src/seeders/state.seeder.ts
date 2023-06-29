@@ -195,21 +195,23 @@ class StateSeeder implements ISeeder {
 
       const queries: any = [];
 
-      states.forEach(async (state) => {
+      const cb = async (state: any) => {
         const { state: name, alias, region: regionName } = state;
         const region = await Region.findOne({ name: regionName });
         if (!region) {
           throw new Error("Region not found");
         }
-
         const query = State.create({
           name,
           alias,
           region: region._id,
         });
-
         queries.push(query);
-      });
+      };
+
+      for (const state of states) {
+        await cb(state);
+      }
 
       await Promise.all(queries);
       return "States seeded successfully";

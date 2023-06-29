@@ -13,8 +13,8 @@ mongoose
     console.log("connected to db");
 
     const seeders = [
-      new RegionSeeder(),
-      new StateSeeder(),
+      // new RegionSeeder(),
+      // new StateSeeder(),
       new LocalGovernmentAreaSeeder(),
     ];
     const queries = seeders.map((seeder) => seeder.seed());

@@ -21,13 +21,13 @@ class ApiFeatures {
 
       parsedQuery.$or = [
         {
-          title: {
+          name: {
             $regex: search,
             $options: "i",
           },
         },
         {
-          description: {
+          alias: {
             $regex: search,
             $options: "i",
           },
@@ -38,6 +38,7 @@ class ApiFeatures {
     }
 
     this.query = this.query.find(parsedQuery);
+
     return this;
   }
 

@@ -12,7 +12,7 @@ class RegionController extends BaseController {
 
   getAll = catchAsync(
     async (req: Request, res: Response, next: NextFunction) => {
-      const { err, data } = await this.region.index(req.params);
+      const { err, data } = await this.region.index(req.query);
 
       if (err) {
         return next(err);

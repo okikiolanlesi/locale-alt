@@ -1006,7 +1006,7 @@ class LocalGovernmentAreaSeeder implements ISeeder {
 
       const queries: Promise<any>[] = [];
 
-      statesAndLocalGovernmentsUnderThem.forEach(async (item) => {
+      const cb = async (item) => {
         const { lgas, state: stateName } = item;
 
         const state = await State.findOne({ name: stateName });
@@ -1029,7 +1029,11 @@ class LocalGovernmentAreaSeeder implements ISeeder {
             queries.push(newLocalGovernment.save());
           }
         });
-      });
+      };
+
+      for (const item of statesAndLocalGovernmentsUnderThem) {
+        await cb(item);
+      }
 
       await Promise.all(queries);
 
