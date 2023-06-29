@@ -1,4 +1,4 @@
-import { IData } from "@interfaces/action-response.interface";
+import { IData } from "../interfaces/action-response.interface";
 import { Response } from "express";
 
 class BaseController {

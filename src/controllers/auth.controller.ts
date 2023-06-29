@@ -1,8 +1,7 @@
 import catchAsync from "../utils/catchAsync";
 import AuthAction from "../actions/auth.action";
 import { NextFunction, Request, Response } from "express";
-import AuthValidator from "@validators/auth.validator";
-import { extend } from "joi";
+import AuthValidator from "../validators/auth.validator";
 import BaseController from "./base.controller";
 
 class AuthController extends BaseController {
@@ -33,3 +32,5 @@ class AuthController extends BaseController {
     }
   );
 }
+
+export default new AuthController();

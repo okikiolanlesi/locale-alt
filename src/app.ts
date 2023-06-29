@@ -5,19 +5,18 @@ import router from "./routes/index";
 import globalErrorHandler, {
   handle404Error,
 } from "./controllers/error.controller";
+import config from "./config/env.config";
 
 class Server {
   public app: express.Application;
   public port: number;
   private logger: any;
-  private dbConnection: any;
 
   constructor() {
     this.app = express();
-    this.port = 3000;
+    this.port = config.port;
     this.logger = morgan("dev");
     this.config();
-    // this.dbConnection=;
   }
 
   private config() {
