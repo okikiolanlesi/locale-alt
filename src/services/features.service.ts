@@ -1,6 +1,7 @@
 class ApiFeatures {
   query: any;
   queryString: any;
+
   constructor(query, queryString) {
     this.query = query;
     this.queryString = queryString;
@@ -12,7 +13,31 @@ class ApiFeatures {
     excludedFields.forEach((el) => delete queryObj[el]);
     let queryStr = JSON.stringify(queryObj);
     queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, (match) => `$${match}`);
-    this.query = this.query.find(JSON.parse(queryStr));
+    let parsedQuery = JSON.parse(queryStr);
+
+    // Modified query so that it can use $regex operator
+    if (parsedQuery.search) {
+      let search = parsedQuery.search;
+
+      parsedQuery.$or = [
+        {
+          title: {
+            $regex: search,
+            $options: "i",
+          },
+        },
+        {
+          description: {
+            $regex: search,
+            $options: "i",
+          },
+        },
+      ];
+
+      delete parsedQuery.search;
+    }
+
+    this.query = this.query.find(parsedQuery);
     return this;
   }
 
@@ -45,4 +70,5 @@ class ApiFeatures {
     return this;
   }
 }
-module.exports = ApiFeatures;
+
+export default ApiFeatures;

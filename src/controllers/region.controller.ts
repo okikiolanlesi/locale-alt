@@ -1,7 +1,7 @@
 import catchAsync from "../utils/catchAsync";
 import { NextFunction, Request, Response } from "express";
 import BaseController from "./base.controller";
-import RegionAction from "@actions/region.action";
+import RegionAction from "../actions/region.action";
 
 class RegionController extends BaseController {
   protected region: RegionAction;

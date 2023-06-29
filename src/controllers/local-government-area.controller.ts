@@ -1,7 +1,7 @@
 import catchAsync from "../utils/catchAsync";
 import { NextFunction, Request, Response } from "express";
 import BaseController from "./base.controller";
-import LocalGovernmentAreaAction from "@actions/local-government-area.action";
+import LocalGovernmentAreaAction from "../actions/local-government-area.action";
 
 class LocalGovernmentAreaController extends BaseController {
   protected lga: LocalGovernmentAreaAction;

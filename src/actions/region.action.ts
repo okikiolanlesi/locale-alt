@@ -1,4 +1,4 @@
-import Region from "@models/region.model";
+import Region from "../models/region.model";
 import IResponse from "../interfaces/action-response.interface";
 import ApiFeatures from "../services/features.service";
 
